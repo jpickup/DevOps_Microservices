@@ -1,0 +1,16 @@
+# install pyenv
+sudo yum install -y gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel
+
+curl https://pyenv.run | bash
+
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+
+source ~/.bashrc
+
+
+# install python 3.8
+pyenv install 3.8.0
+pyenv global 3.8.0
+python --version

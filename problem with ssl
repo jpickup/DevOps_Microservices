@@ -1,0 +1,19 @@
+Problem with OpenSSL version when trying to run sam local invoke
+
+I'm trying to follow along with the wikipedia example in the Wikipedia Example of the Deploy an Event-Driven Microservice and am hitting a strange problem with ssl versions, command and error below.
+
+(.wikipedia-summary) voclabs:~/environment/DevOps_Microservices/wikipedia-summary (master) $ sam local invoke -e payload.json 
+Invoking Container created from helloworldfunction:python3.8-v1
+Building image.................
+Using local image: helloworldfunction:rapid-x86_64.
+
+[ERROR] Runtime.ImportModuleError: Unable to import module 'app': urllib3 v2.0 only supports OpenSSL 1.1.1+, currently the 'ssl' module is coTraceback (most recent call last):26 Jan 2017'. See: https://github.com/urllib3/urllib3/issues/2168
+END RequestId: b7d1ef56-3ba6-455d-aee9-0817447608a9
+REPORT RequestId: b7d1ef56-3ba6-455d-aee9-0817447608a9  Init Duration: 1.51 ms  Duration: 130.47 ms     Billed Duration: 131 ms Memory Size: 128 MB  Max Memory Used: 128 MB
+{"errorMessage": "Unable to import module 'app': urllib3 v2.0 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'OpenSSL 1.0.2k-fips  26 Jan 2017'. See: https://github.com/urllib3/urllib3/issues/2168", "errorType": "Runtime.ImportModuleError", "stackTrace": []}(.wikipedia-summary) 
+
+
+It appears that the microservice requires SSL 1.1.1 or greater but the sam local invoke is using 1.0.2. I don't see any obvious way of updating the ssl version used by sam so I guess the answer is to downgrade the ssl version used by the python lambda? Not sure how to go about this.
+
+
+https://github.com/jpickup/DevOps_Microservices.git
