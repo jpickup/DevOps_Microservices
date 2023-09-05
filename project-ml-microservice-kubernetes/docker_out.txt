@@ -1,0 +1,40 @@
+(.devops) john@Johns-iMac project-ml-microservice-kubernetes % ./run_docker.sh
+[+] Building 33.3s (10/10) FINISHED                                                                         
+ => [internal] load build definition from Dockerfile                                                   0.0s
+ => => transferring dockerfile: 37B                                                                    0.0s
+ => [internal] load .dockerignore                                                                      0.0s
+ => => transferring context: 2B                                                                        0.0s
+ => [internal] load metadata for docker.io/library/python:3.7.3-stretch                                1.4s
+ => [auth] library/python:pull token for registry-1.docker.io                                          0.0s
+ => [1/4] FROM docker.io/library/python:3.7.3-stretch@sha256:205cafadbb7f0c48f2a6d655eb100a9675aa85e6  0.0s
+ => [internal] load build context                                                                      0.0s
+ => => transferring context: 986B                                                                      0.0s
+ => CACHED [2/4] WORKDIR /app                                                                          0.0s
+ => [3/4] COPY . /app                                                                                  0.1s
+ => [4/4] RUN pip install --upgrade pip &&    pip install --trusted-host pypi.python.org -r requirem  28.8s
+ => exporting to image                                                                                 2.8s
+ => => exporting layers                                                                                2.8s
+ => => writing image sha256:a95f24cd849b62d3b80c1c5b0edc30fb356062dfd0fa4a66ce4710aad17fd682           0.0s
+ => => naming to docker.io/library/project4                                                            0.0s
+REPOSITORY                    TAG                IMAGE ID       CREATED          SIZE
+project4                      latest             a95f24cd849b   5 seconds ago    1.26GB
+api                           latest             2a95d8a6ca60   24 hours ago     1.74GB
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 194-414-639
+[2023-09-05 19:09:42,562] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2023-09-05 19:09:42,591] INFO in app: Inference payload DataFrame: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-09-05 19:09:42,615] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-09-05 19:09:42,621] INFO in app: Output Prediction: [20.35373177134412]
+172.17.0.1 - - [05/Sep/2023 19:09:42] "POST /predict HTTP/1.1" 200 -
