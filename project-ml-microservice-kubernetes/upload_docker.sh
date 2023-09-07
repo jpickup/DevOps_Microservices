@@ -5,11 +5,14 @@
 
 # Step 1:
 # Create dockerpath
-dockerpath=/project4
+dockerpath=jwpickup/udacity:project4
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
 
+docker tag project4 $dockerpath
+
 # Step 3:
 # Push image to a docker repository
+docker push $dockerpath
